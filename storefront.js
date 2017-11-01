@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var Table = require("cli-table");
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -19,11 +20,14 @@ connection.connect(function(err) {
 function displayItemsAvailable(){
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        var arr = [];
+        var table = new Table({
+            head: ["ID", "Product Name", "Department Name", "Price", "Remaining Stock"],
+            colWidths: [5, 25, 15, 20, 20]
+        });
         for(var i = 0; i < res.length; i++){
-            arr.push(res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].price + " | " + res[i].stock_quantity);
+            table.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price, res[i].stock_quantity]);
         }
-        console.log(arr);
+        console.log(table.toString());
         start();
     });
 }
@@ -44,12 +48,7 @@ function start(){
         ]).then(function (answer) {
             var item_id = answer.item_id;
             var quantity = answer.quantity;
-            connection.query("SELECT * FROM products WHERE ?",
-                [
-                    {
-                        item_id: answer.item_id
-                    }
-                ],
+            connection.query("SELECT * FROM products WHERE ?", [item_id],
                 function (err, res) {
                     if (err) throw err;
                     var stock_quantity = res[0].stock_quantity;
