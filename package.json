@@ -1,0 +1,23 @@
+{
+  "name": "storefront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "storefront.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greggpopovichy/storefront.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Greggpopovichy/storefront/issues"
+  },
+  "homepage": "https://github.com/Greggpopovichy/storefront#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "mysql": "^2.15.0"
+  }
+}
