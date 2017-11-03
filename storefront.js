@@ -22,7 +22,7 @@ function displayItemsAvailable(){
         if (err) throw err;
         var table = new Table({
             head: ["ID", "Product Name", "Department Name", "Price", "Remaining Stock"],
-            colWidths: [5, 25, 15, 20, 20]
+            colWidths: [5, 25, 25, 20, 20]
         });
         for(var i = 0; i < res.length; i++){
             table.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price, res[i].stock_quantity]);
