@@ -8,4 +8,4 @@ Technologies used in project: \
 -inquirer node package \
 -node-cli node package 
 
-g
+
